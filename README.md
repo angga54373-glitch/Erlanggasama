@@ -1,2 +1,0 @@
-# Erlanggasama
-tentang game 
