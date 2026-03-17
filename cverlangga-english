@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erlangga Fauzan · CV & portfolio (English)</title>
+    <!-- Font Awesome 5 (professional icons) -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <!-- Google Font: Inter + fallback -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f1f4f8;
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            line-height: 1.5;
+            color: #1e293b;
+            padding: 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .portfolio-wrapper {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* main card */
+        .paper {
+            background: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        /* header area with name/title and subtle wave */
+        .header-bg {
+            background: linear-gradient(145deg, #0b2b40 0%, #1a4b6b 100%);
+            padding: 2.5rem 2.5rem 1.8rem 2.5rem;
+            color: white;
+        }
+
+        .name-title h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .name-title .sub {
+            font-size: 1.2rem;
+            font-weight: 400;
+            opacity: 0.85;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.3rem;
+        }
+
+        .sub i {
+            font-size: 1rem;
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.8rem;
+            border-radius: 30px;
+            font-style: normal;
+        }
+
+        .header-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-top: 1.8rem;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .chip {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(4px);
+            padding: 0.5rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* main two column layout */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.1fr;
+            gap: 0;
+            background: #fff;
+        }
+
+        /* left panel — profile, contact, hobbies, skills */
+        .left-panel {
+            background: #f9fcff;
+            padding: 2.2rem 1.8rem;
+            border-right: 1px solid #e6edf4;
+        }
+
+        .right-panel {
+            padding: 2.2rem 2.2rem 2.2rem 2rem;
+            background: white;
+        }
+
+        /* profile summary */
+        .profil-ringkas {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem 1.3rem;
+            box-shadow: 0 6px 14px rgba(0, 27, 45, 0.04);
+            margin-bottom: 2rem;
+            border: 1px solid #e9f0f6;
+        }
+
+        .profil-ringkas h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: #0b2b40;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profil-ringkas h2 i {
+            color: #1e6f9f;
+        }
+
+        .quote {
+            font-size: 1rem;
+            color: #2f4358;
+            margin-bottom: 1.2rem;
+            padding-left: 0.5rem;
+            border-left: 4px solid #1e6f9f;
+            padding-left: 1rem;
+        }
+
+        .pendidikan-item {
+            display: flex;
+            gap: 0.8rem;
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .pendidikan-item .icon {
+            background: #e1ecf5;
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e6f9f;
+            font-size: 1.3rem;
+        }
+
+        .pendidikan-detail h3 {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .pendidikan-detail .meta {
+            color: #547087;
+            font-size: 0.9rem;
+        }
+
+        /* contact & personal */
+        .contact-box {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 14px rgba(0, 27, 45, 0.02);
+            border: 1px solid #e9f0f6;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.1rem;
+            font-size: 0.95rem;
+            word-break: break-word;
+        }
+
+        .contact-item i {
+            width: 24px;
+            color: #1e6f9f;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .contact-item a, .contact-item span {
+            color: #1e293b;
+            text-decoration: none;
+            border-bottom: 1px dotted transparent;
+            transition: 0.2s;
+        }
+
+        .contact-item a:hover {
+            border-bottom: 1px dotted #1e6f9f;
+            color: #0b2b40;
+        }
+
+        .website-link {
+            background: #eef5fa;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 0.2rem;
+        }
+
+        /* skill chips & languages */
+        .skill-section {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 14px rgba(0, 27, 45, 0.02);
+            border: 1px solid #e9f0f6;
+            margin-bottom: 2rem;
+        }
+
+        .skill-section h3 {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: #0b2b40;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .skill-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tag {
+            background: #e5f0fa;
+            color: #114a66;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 450;
+            border: 1px solid #cde0ed;
+        }
+
+        .skill-tag.learning {
+            background: #fff3d6;
+            color: #8a6300;
+            border-color: #f7e2b5;
+        }
+
+        .lang-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px dashed #cbdae6;
+            padding: 0.5rem 0;
+        }
+
+        .lang-item span:first-child {
+            font-weight: 500;
+        }
+
+        .lang-item span:last-child {
+            color: #4f6c84;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        /* hobbies / interests */
+        .hobby-wrap {
+            background: white;
+            border-radius: 24px;
+            padding: 1.5rem;
+            border: 1px solid #e9f0f6;
+        }
+
+        .hobby-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 1.8rem;
+            margin-top: 0.8rem;
+        }
+
+        .hobby-icons span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f0f7fd;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+
+        /* right panel : experience */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0b2b40;
+            letter-spacing: -0.01em;
+            border-bottom: 2px solid #e4edf5;
+            padding-bottom: 0.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-title i {
+            color: #1e6f9f;
+        }
+
+        .exp-card {
+            margin-bottom: 2.2rem;
+        }
+
+        .exp-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2rem;
+        }
+
+        .exp-header h3 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #0d3c54;
+        }
+
+        .exp-date {
+            background: #e3eef8;
+            padding: 0.2rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #1d5679;
+        }
+
+        .exp-sub {
+            font-weight: 500;
+            color: #2e5775;
+            margin-bottom: 0.3rem;
+            font-size: 0.98rem;
+        }
+
+        .exp-desc {
+            color: #2f4052;
+            font-size: 0.95rem;
+            margin-left: 0.2rem;
+            padding-left: 0.7rem;
+            border-left: 3px solid #bdd8ec;
+            margin-top: 0.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .exp-detail-list {
+            list-style: none;
+            margin-top: 0.4rem;
+        }
+
+        .exp-detail-list li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            gap: 0.7rem;
+            align-items: flex-start;
+            font-size: 0.95rem;
+        }
+
+        .exp-detail-list li i {
+            color: #1e6f9f;
+            font-size: 0.8rem;
+            margin-top: 0.2rem;
+            min-width: 16px;
+        }
+
+        .divider-light {
+            height: 1px;
+            background: linear-gradient(to right, #dbe8f2, transparent);
+            margin: 1rem 0 1.5rem 0;
+        }
+
+        /* sales / footer note */
+        .sales-highlight {
+            background: #f1f8ff;
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid #cde0ed;
+        }
+
+        .sales-highlight p {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .sales-highlight i {
+            font-size: 1.5rem;
+            color: #1e6f9f;
+        }
+
+        /* responsive */
+        @media (max-width: 800px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .left-panel {
+                border-right: none;
+                border-bottom: 1px solid #e6edf4;
+            }
+            .header-bg {
+                padding: 1.8rem;
+            }
+            .name-title h1 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .header-grid {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="portfolio-wrapper">
+    <div class="paper">
+        <!-- header dark -->
+        <div class="header-bg">
+            <div class="name-title">
+                <h1>Erlangga Fauzan</h1>
+                <div class="sub">
+                    <i class="fas fa-briefcase"></i> Office Staff · Marketing professional
+                    <span class="chip"><i class="far fa-smile"></i> 27 years old</span>
+                </div>
+            </div>
+            <div class="header-grid">
+                <div class="badge-row">
+                    <span class="chip"><i class="fas fa-tag"></i> diligent · disciplined · fast learner</span>
+                    <span class="chip"><i class="fas fa-chess-queen"></i> strategy & development</span>
+                </div>
+                <div class="website-link">
+                    <i class="fas fa-globe"></i> erlanggasama.my.id
+                </div>
+            </div>
+        </div>
+        <!-- main content grid -->
+        <div class="main-grid">
+            <!-- LEFT PANEL -->
+            <div class="left-panel">
+                <!-- profile summary -->
+                <div class="profil-ringkas">
+                    <h2><i class="fas fa-user-alt"></i> my profile</h2>
+                    <div class="quote">
+                        I am 27 years old, skilled in Marketing. I am diligent, disciplined, and enjoy learning new things.
+                    </div>
+                    <div class="pendidikan-item">
+                        <div class="icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="pendidikan-detail">
+                            <h3>SMAN 1 Cikalong Wetan</h3>
+                            <div class="meta">Natural Sciences · 2014 – 2017</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- contact & address -->
+                <div class="contact-box">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>0851 7303 3115</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="far fa-envelope"></i>
+                        <a href="mailto:erlanggasama55@gmail.com">erlanggasama55@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kp.pamoyanan Rt.001 Rw.013, Padaasih Village, Cisarua District, West Bandung</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-link"></i>
+                        <a href="https://erlanggasama.my.id" target="_blank">erlanggasama.my.id</a>
+                    </div>
+                </div>
+
+                <!-- skills & languages -->
+                <div class="skill-section">
+                    <h3><i class="fas fa-code"></i> technical skills</h3>
+                    <div class="skill-grid">
+                        <span class="skill-tag">Ms. Word</span>
+                        <span class="skill-tag">Ms. Excel</span>
+                        <span class="skill-tag">POS</span>
+                        <span class="skill-tag">Etrans</span>
+                        <span class="skill-tag learning">Python (learning)</span>
+                        <span class="skill-tag learning">HTML (learning)</span>
+                        <span class="skill-tag learning">CSS (learning)</span>
+                        <span class="skill-tag learning">JavaScript (learning)</span>
+                    </div>
+                    <h3 style="margin-top: 1.3rem;"><i class="fas fa-language"></i> languages</h3>
+                    <div class="lang-item"><span>Japanese</span> <span>passive</span></div>
+                    <div class="lang-item"><span>English</span> <span>passive</span></div>
+                    <div class="lang-item" style="border-bottom: none;"><span>Communication</span> <span>active</span></div>
+                </div>
+
+                <!-- interests / hobbies -->
+                <div class="hobby-wrap">
+                    <h3 style="display: flex; gap: 0.6rem; margin-bottom: 0.4rem;"><i class="fas fa-heart" style="color:#c44569;"></i> interests & activities</h3>
+                    <div class="hobby-icons">
+                        <span><i class="fas fa-headphones-alt"></i> music</span>
+                        <span><i class="fas fa-film"></i> movies</span>
+                        <span><i class="fas fa-utensils"></i> culinary</span>
+                        <span><i class="fas fa-tree"></i> travel</span>
+                        <span><i class="fas fa-chess-knight"></i> chess</span>
+                    </div>
+                    <!-- additional line about offering products etc. -->
+                    <div style="margin-top: 1.2rem; font-size: 0.9rem; background: #e5f0fa; padding: 0.8rem; border-radius: 16px;">
+                        <i class="fas fa-bullhorn" style="margin-right: 0.5rem; color:#0f4c6b;"></i> 
+                        offering products, customer education, maintaining displays, and reporting sales.
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT PANEL : work experience -->
+            <div class="right-panel">
+                <div class="section-title">
+                    <i class="fas fa-briefcase"></i> work experience
+                </div>
+
+                <!-- experience 1: Advertising 2018-2019 -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <h3>Advertising / Marketing</h3>
+                        <span class="exp-date">2018 – 2019</span>
+                    </div>
+                    <div class="exp-sub">CV Eddelwais (Granton Marketing · international brand)</div>
+                    <ul class="exp-detail-list">
+                        <li><i class="fas fa-circle"></i> Operated under the international trademark Granton Marketing.</li>
+                    </ul>
+                </div>
+
+                <!-- experience 2: Assistant Chief Store -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <h3>Assistant Chief of Store</h3>
+                        <span class="exp-date">2019 – 2022</span>
+                    </div>
+                    <div class="exp-sub">PT Sumber Alfaria Trijaya, Tbk (Alfamart)</div>
+                    <ul class="exp-detail-list">
+                        <li><i class="fas fa-circle"></i> Managed cash in the safe (cash management).</li>
+                        <li><i class="fas fa-circle"></i> Checked supply & ensured product promotions were running.</li>
+                    </ul>
+                </div>
+
+                <!-- experience 3: Business Development -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <h3>Business Development</h3>
+                        <span class="exp-date">2022 – 2023</span>
+                    </div>
+                    <div class="exp-sub">PT Sanjayatama Lestari</div>
+                    <ul class="exp-detail-list">
+                        <li><i class="fas fa-circle"></i> Advanced the company through business development strategies.</li>
+                    </ul>
+                </div>
+
+                <!-- experience 4: SBA Unilever (Sanjayatama) -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <h3>SBA Unilever</h3>
+                        <span class="exp-date">2023 – 2025</span>
+                    </div>
+                    <div class="exp-sub">PT Sanjayatama Lestari</div>
+                    <ul class="exp-detail-list">
+                        <li><i class="fas fa-circle"></i> Handled Unilever products: customer education, display maintenance, sales reporting.</li>
+                    </ul>
+                </div>
+
+                <!-- experience 5: SBA Unilever (Mitra Andal) -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <h3>SBA Unilever</h3>
+                        <span class="exp-date">2025 – Jan 2026</span>
+                    </div>
+                    <div class="exp-sub">PT Mitra Andal Sejati</div>
+                    <ul class="exp-detail-list">
+                        <li><i class="fas fa-circle"></i> Offering products, customer education, display maintenance, sales reporting.</li>
+                    </ul>
+                </div>
+
+                <!-- marketing additional summary -->
+                <div class="sales-highlight">
+                    <p>
+                        <i class="fas fa-chart-line"></i>
+                        <span><strong>Marketing & sales support</strong> · field experience since 2018, trained in merchandising, customer communication, and store operations.</span>
+                    </p>
+                </div>
+
+                <!-- soft skill summary -->
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <span style="background:#e9f2fa; padding:0.3rem 1.2rem; border-radius:50px; font-size:0.9rem;"><i class="fas-regular fa-clock"></i> disciplined</span>
+                    <span style="background:#e9f2fa; padding:0.3rem 1.2rem; border-radius:50px; font-size:0.9rem;"><i class="fas fa-book-open"></i> eager to learn</span>
+                    <span style="background:#e9f2fa; padding:0.3rem 1.2rem; border-radius:50px; font-size:0.9rem;"><i class="fas fa-store"></i> stock & promo</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer minor line -->
+        <div style="padding: 1rem 2rem; border-top: 1px solid #e0ecf5; background: #f9fcff; font-size:0.9rem; display: flex; justify-content: space-between; flex-wrap: wrap;">
+            <span><i class="far fa-copyright"></i> Erlangga Fauzan – updated 2026</span>
+            <span><i class="fas fa-download"></i> web version · interactive CV</span>
+        </div>
+    </div>
+    <!-- tagline kecil -->
+    <p style="text-align: right; margin-top: 0.8rem; color:#6f8fa2;"><i class="fas fa-pen-fancy"></i> professional portfolio · ready to work</p>
+</div>
+</body>
+</html>
